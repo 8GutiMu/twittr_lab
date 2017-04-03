@@ -1,4 +1,6 @@
-
+var conteo = document.getElementById("mensaje");
+var contadorsito = 0;
+conteo.addEventListener("keypress",contador);
 
 
 function agregarTweet(){
@@ -32,14 +34,22 @@ function agregarTweet(){
     //vaciar cajas de texto
     document.getElementById("mensaje").value ="";
     document.getElementById("persona").value ="";
+    contadorsito=0;
+    document.getElementById("caracteres").innerHTML = 0;s
+
   }
+}
 
 
 
-
-
-
-
+function contador(){
+  if (contadorsito < 140){
+    contadorsito +=1;
+    var cont = document.getElementById("caracteres");
+    cont.innerHTML = contadorsito;
+  }else{
+    alert("No puedes escribir mas de 140 caracteres");
+  }
 
 
 }
