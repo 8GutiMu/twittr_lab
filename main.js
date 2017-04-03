@@ -3,6 +3,10 @@ var contadorsito = 0;
 conteo.addEventListener("keypress",contador);
 
 
+var seccion = document.getElementById("botonEnviar");
+seccion.addEventListener("click",agregarTweet)
+
+
 function agregarTweet(){
   event.preventDefault();
   //saca valor de caja de texto y de nombre
@@ -20,7 +24,7 @@ function agregarTweet(){
     var personaTweet = document.createElement("span");
 
     //escribir los textos
-    de.innerHTML = "De:";
+    de.innerHTML = "De: ";
     tweet.innerHTML = mensaje;
     personaTweet.innerHTML = persona;
 
@@ -35,7 +39,7 @@ function agregarTweet(){
     document.getElementById("mensaje").value ="";
     document.getElementById("persona").value ="";
     contadorsito=0;
-    document.getElementById("caracteres").innerHTML = 0;s
+    document.getElementById("caracteres").innerHTML = 0;
 
   }
 }
@@ -50,6 +54,4 @@ function contador(){
   }else{
     alert("No puedes escribir mas de 140 caracteres");
   }
-
-
 }
