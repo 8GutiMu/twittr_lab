@@ -1,23 +1,24 @@
-var conteo = document.getElementById("mensaje");
+//variables para sacar elementos de html
 var contadorsito = 0;
 var contadorsitoClick =0;
-conteo.addEventListener("keypress",contador);
-conteo.addEventListener("click",noClick)
-
-
-
+var conteo = document.getElementById("mensaje");
 var seccion = document.getElementById("botonEnviar");
 var person = document.getElementById("persona");
+
+conteo.addEventListener("keypress",contador);
+conteo.addEventListener("click",noClick)
 seccion.addEventListener("click",createTweet);
 document.addEventListener("click",contadorClick);
 seccion.addEventListener("click",noClick);
 person.addEventListener("click",noClick);
 
+//Clase tweet
 function NewTweet(tweetContenido,persona){
     this.tweetContenido = tweetContenido;
     this.persona = persona;
 }
 
+//Crea un nuevo objetooo!!
 function createTweet(){
   var tweetContenido = document.getElementById("mensaje").value;
   var persona = document.getElementById("persona").value;
@@ -32,6 +33,7 @@ function createTweet(){
 
 }
 
+//Muestra en pantalla
 function renderHTML(tweet) {
   event.preventDefault();
 
@@ -75,6 +77,7 @@ function renderHTML(tweet) {
 
 }
 
+//Contador de caracteres!!!
 function contador(){
   if (contadorsito < 140){
     contadorsito +=1;
@@ -85,6 +88,7 @@ function contador(){
   }
 }
 
+//contador de clicks
 function contadorClick(){
 
     contadorsitoClick+= 1;
@@ -93,6 +97,7 @@ function contadorClick(){
 
 }
 
+//no contar clicks!!
 function noClick(){
   event.stopPropagation();
 }
