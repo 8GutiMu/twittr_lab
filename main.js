@@ -1,39 +1,54 @@
-var conteo = document.getElementById("mensaje");
-var contadorsito = 0;
-conteo.addEventListener("keypress",contador);
+function NewTweet(tweetContenido,persona){
+    this.tweetContenido = tweetContenido;
+    this.persona = persona;
+}
 
-
-var seccion = document.getElementById("botonEnviar");
-seccion.addEventListener("click",agregarTweet)
-
-
-function agregarTweet(){
-  event.preventDefault();
-  //saca valor de caja de texto y de nombre
-  var mensaje = document.getElementById("mensaje").value;
+function createTweet(){
+  var tweetContenido = document.getElementById("mensaje").value;
   var persona = document.getElementById("persona").value;
 
-  if (mensaje == "" || persona == ""){
-    alert("Llena todos los campos")
+  if(tweetContenido == "" || persona == ""){
+    alert("Llena todos los campos");
+    event.preventDefault();
   } else{
+    var tweet = new NewTweet(tweetContenido,persona);
+    renderHTML(tweet);
+  }
 
-    //crear un articulo nuevo y sus elementos
+}
+
+function renderHTML(tweet) {
+  event.preventDefault();
+
+    //crear elementos
     var articulo = document.createElement("article");
-    var tweet = document.createElement("p");
+    var contenedorTweet = document.createElement("p");
     var de = document.createElement("p");
     var personaTweet = document.createElement("span");
+    var botonEliminar = document.createElement("button");
+    var salto = document.createElement("br");
 
     //escribir los textos
+    articulo.class = "articleNew";
     de.innerHTML = "De: ";
-    tweet.innerHTML = mensaje;
-    personaTweet.innerHTML = persona;
+    contenedorTweet.innerHTML = tweet.tweetContenido;
+    personaTweet.innerHTML = tweet.persona;
+    botonEliminar.type = "button";
+    botonEliminar.innerText = "Eliminar";
+    botonEliminar.class = "dentroTweet";
+    botonEliminar.onclick = function(event){
+      var articulo = this.parentElement;
+      articulo.remove();
+    }
 
     de.appendChild(personaTweet);
     de.style.fontSize = "12px";
-    articulo.appendChild(tweet);
+    articulo.appendChild(contenedorTweet);
     articulo.appendChild(de);
+    articulo.appendChild(botonEliminar);
 
     document.getElementById("tweets").appendChild(articulo);
+    document.getElementById("tweets").appendChild(salto);
 
     //vaciar cajas de texto
     document.getElementById("mensaje").value ="";
@@ -41,9 +56,21 @@ function agregarTweet(){
     contadorsito=0;
     document.getElementById("caracteres").innerHTML = 0;
 
-  }
+
+
 }
 
+
+var conteo = document.getElementById("mensaje");
+var contadorsito = 0;
+var contadorsitoClick =0;
+conteo.addEventListener("keypress",contador);
+
+
+var seccion = document.getElementById("botonEnviar");
+seccion.addEventListener("click",createTweet);
+
+document.addEventListener("click",contadorClick);
 
 
 function contador(){
@@ -54,4 +81,16 @@ function contador(){
   }else{
     alert("No puedes escribir mas de 140 caracteres");
   }
+}
+
+function contadorClick(){
+
+    contadorsitoClick+= 1;
+    document.getElementById("contClicks").innerHTML = contadorsitoClick;
+    event.stopPropagation();
+
+}
+
+function noClick(){
+  event.stopPropagation();
 }
