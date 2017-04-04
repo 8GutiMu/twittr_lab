@@ -1,3 +1,18 @@
+var conteo = document.getElementById("mensaje");
+var contadorsito = 0;
+var contadorsitoClick =0;
+conteo.addEventListener("keypress",contador);
+conteo.addEventListener("click",noClick)
+
+
+
+var seccion = document.getElementById("botonEnviar");
+var person = document.getElementById("persona");
+seccion.addEventListener("click",createTweet);
+document.addEventListener("click",contadorClick);
+seccion.addEventListener("click",noClick);
+person.addEventListener("click",noClick);
+
 function NewTweet(tweetContenido,persona){
     this.tweetContenido = tweetContenido;
     this.persona = persona;
@@ -59,19 +74,6 @@ function renderHTML(tweet) {
 
 
 }
-
-
-var conteo = document.getElementById("mensaje");
-var contadorsito = 0;
-var contadorsitoClick =0;
-conteo.addEventListener("keypress",contador);
-
-
-var seccion = document.getElementById("botonEnviar");
-seccion.addEventListener("click",createTweet);
-
-document.addEventListener("click",contadorClick);
-
 
 function contador(){
   if (contadorsito < 140){
